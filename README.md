@@ -17,7 +17,7 @@ As below screen shot you will be able to see stack creation with each AWS resour
 
 ![](images/screen2.png)
 
-Once it is success in when you go to template/view in designer you can see the built architecture visually and related dependecies as per below screen shot. 
+Once it is success in Cloudformation stack when you go to template/view in designer you can see the built architecture visually and related dependecies as per below screen shot. 
 
 ![](images/screen2.1.png)	
 
