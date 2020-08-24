@@ -55,7 +55,7 @@ If the deployment is success you will see Succeed in each steps as per below scr
 If the deployment is succeed you will see the new deployment stack created({yourstackname}-deployment) in cloudformation stack. And there template/View in Designer you can see the built architecture in second task.
 
 ![](images/screen7.png)
- 
+ test
 
 
 
