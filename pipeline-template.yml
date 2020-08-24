@@ -2,19 +2,19 @@ Resources:
   CodeRepository:
     Type: AWS::CodeCommit::Repository
     Properties:
-      RepositoryDescription: "My Application!"
+      RepositoryDescription: "ReGov App!"
       RepositoryName: !Sub "${AWS::StackName}"
 
-  ArtifactAndDeploymentBucket:
+  ArtifactStoreBucket:
     Type: AWS::S3::Bucket
 
-  Pipeline:
+  MyPipeline:
     Type: AWS::CodePipeline::Pipeline
     Properties:
       Name: !Sub '${CodeRepository.Name}-pipeline'
-      RoleArn: !GetAtt PipelineRole.Arn
+      RoleArn: !GetAtt MyPipelineRole.Arn
       ArtifactStore:
-        Location: !Ref ArtifactAndDeploymentBucket
+        Location: !Ref ArtifactStoreBucket
         Type: S3
       Stages:
         - 
@@ -29,13 +29,13 @@ Resources:
                 Provider: CodeCommit
               OutputArtifacts:
                 -
-                  Name: Code
+                  Name: SourceCode
               Configuration:
                 BranchName: master
                 RepositoryName: !GetAtt CodeRepository.Name
               RunOrder: 1
         -
-          Name: PackageCloudFormation
+          Name: BuildAndPackages
           Actions:
             - 
               Name: Build_Approval
@@ -47,18 +47,18 @@ Resources:
               InputArtifacts: []
               RunOrder: 1
             - 
-              Name: PackagePipelineCFN
+              Name: CFNPipelinePackages
               ActionTypeId:
                 Category: Build
                 Owner: AWS
                 Version: 1
                 Provider: CodeBuild
               Configuration:
-                ProjectName: !Ref CodeBuildProject
+                ProjectName: !Ref BuildProject
               InputArtifacts: 
-                - Name: Code
+                - Name: SourceCode
               OutputArtifacts:
-                - Name: CodeWithPackagedCFN
+                - Name: CodeWithPackages
               RunOrder: 2
         -  
           Name: Deploy
@@ -76,7 +76,7 @@ Resources:
               Name: CreateChangeset
               InputArtifacts:
                 -
-                  Name: CodeWithPackagedCFN
+                  Name: CodeWithPackages
               ActionTypeId:
                 Category: Deploy
                 Owner: AWS
@@ -85,10 +85,10 @@ Resources:
               Configuration:
                 ActionMode: CHANGE_SET_REPLACE
                 ChangeSetName: Changes
-                RoleArn: !GetAtt CFNRole.Arn
+                RoleArn: !GetAtt CloudformationRole.Arn
                 Capabilities: CAPABILITY_NAMED_IAM
                 StackName: !Sub "${AWS::StackName}-Deployment"
-                TemplatePath: CodeWithPackagedCFN::output.yml
+                TemplatePath: CodeWithPackages::output.yml
               RunOrder: 2
             - Name: ExecuteChangeset
               ActionTypeId:
@@ -98,13 +98,13 @@ Resources:
                 Provider: CloudFormation
               Configuration:
                 ActionMode: CHANGE_SET_EXECUTE
-                RoleArn: !GetAtt CFNRole.Arn
+                RoleArn: !GetAtt CloudformationRole.Arn
                 StackName: !Sub "${AWS::StackName}-Deployment"
                 ChangeSetName: Changes
-                TemplatePath: CodeWithPackagedCFN::output.yml
+                TemplatePath: CodeWithPackages::output.yml
               RunOrder: 3
 
-  CodeBuildProject:
+  BuildProject:
     Type: AWS::CodeBuild::Project
     Properties:
       Artifacts:
@@ -118,11 +118,11 @@ Resources:
         EnvironmentVariables:
           - Name: DeploymentBucketName
             Type: PLAINTEXT
-            Value: !Ref ArtifactAndDeploymentBucket
+            Value: !Ref ArtifactStoreBucket
       Name: !Sub "${AWS::StackName}-buildproject"
-      ServiceRole: !Ref PipelineRole
+      ServiceRole: !Ref MyPipelineRole
 
-  PipelineRole:
+  MyPipelineRole:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
@@ -192,7 +192,7 @@ Resources:
                 Effect: Allow
                 Resource: '*'        
   
-  CFNRole:
+  CloudformationRole:
     Type: AWS::IAM::Role
     Properties:
       AssumeRolePolicyDocument:
@@ -227,5 +227,6 @@ Resources:
                   - dynamodb:*
                   - rds:*
                   - sqs:*
+                  - appsync:*
                 Effect: Allow
                 Resource: '*' 

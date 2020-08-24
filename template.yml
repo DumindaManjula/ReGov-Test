@@ -197,5 +197,8 @@ Resources:
       Roles:
       - Ref: EC2IAMRole   
 
-
-      #test  
+  GraphQLApi:
+    Type: "AWS::AppSync::GraphQLApi"
+    Properties:
+      Name: AWSAppSync
+      AuthenticationType: AWS_IAM
