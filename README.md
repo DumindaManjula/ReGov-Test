@@ -34,14 +34,12 @@ Next go to AWS CodeCommit repository in AWS services. As per below screen shot y
 	
 	Note: Inside this repository you will not see any file we have to upload file to this in next step.
 
-There you have to commit this buildspec.yml and template.yml file to repository.
-	Note : for this you can clone the repository and use git command to upload these two files.
+There you have to commit this buildspec.yml and template.yml file to repository.For this you can clone the repository and use git command to upload these two files.
 
 	 ![](images/screen5.png)
 
-	This buildspec.yml file contains collection of build commands and related settings, in YAML format, that CodeBuild uses to run a build.
-
-	  This template.yml file contains proposed architecture to build for this test as a cloudformation template in the second task.
+This buildspec.yml file contains collection of build commands and related settings, in YAML format, that CodeBuild uses to run a build.
+This template.yml file contains proposed architecture to build for this test as a cloudformation template in the second task.
 
 
 Once you committed these two files in to codecommit our created codepipeline automatically trigger and start to deploy the architecture requested. In the code pipeline step you will see the progress in each step.
