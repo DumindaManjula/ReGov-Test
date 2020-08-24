@@ -25,7 +25,7 @@ And if you go to AWS codepipeline service you will see the each steps in CI/CD p
 
 ![](images/screen3.png)
 	
-	Note : You will see an error message as failed in AWS code commit service since we have not commited any thing to code commit repository.
+	Note : You will see an error message as failed in AWS code commit service since we have not commited anything yet to codecommit repository.
 
 
 Next go to AWS CodeCommit repository in AWS services. As per below screen shot you will see created repository during our stack creation.
