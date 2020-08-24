@@ -2,10 +2,10 @@ version: 0.1
 phases:
   install:
     commands:
-      - npm install
+      - echo "No any installation need for task" 
   build:
     commands:
-      - echo "Nothing to build here as it's node!"    
+      - echo "Nothing to build here in this task"    
   post_build:
     commands:
       - aws cloudformation package --template-file template.yml 
