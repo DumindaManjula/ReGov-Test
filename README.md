@@ -34,7 +34,7 @@ Next go to AWS CodeCommit repository in AWS services. As per below screen shot y
 	
 	Note: Inside this repository you will not see any file we have to upload file to this in next step.
 
-There you have to commit this buildspec.yml and template.yml file to repository.
+There you have to commit this buildspec.yml and template.yml file to repository. I have already provided those two files in my git repository. 
 
 	Note:For this you can clone the repository and use git command to upload these two files.
 
