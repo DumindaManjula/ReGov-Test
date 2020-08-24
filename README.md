@@ -57,7 +57,7 @@ If the deployment is succeed you will see the new deployment stack created({your
 
 ![](images/screen7.png)
 
-Here we have created CI/CD pipeline and AWS architecture with few services using cloudformation templates and deployed on our cloud enviroment. 
+Here we have created CI/CD pipeline and AWS architecture with few services using cloudformation templates and deployed on AWS cloud enviroment. 
 
 
 
