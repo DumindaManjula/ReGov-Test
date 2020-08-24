@@ -13,11 +13,11 @@ First login in to your AWS account and go to cloudformation service.
 There you can see create stack button and once you click it you will be redirected to template file upload window.
 Select the option “Template is Ready” and upload the pipeline-template.yml file to there.
 When you click next in the next page it is asking a name for the stack and go ahead until stack creation page.
-As below screen shot you will be able to see stack creation with each AWS resources defined in to cloudformation template
+As below screen shot you will be able to see stack creation with each AWS resources defined in the cloudformation template
 
 ![](images/screen2.png)
 
-	Once it is success in when you go to template/view in designer you can see the built architecture visually and related dependecies as per below screen shot. 
+Once it is success in when you go to template/view in designer you can see the built architecture visually and related dependecies as per below screen shot. 
 
 ![](images/screen2.1.png)	
 
