@@ -5,6 +5,6 @@ In this cloudformation stack deployment there are two steps to follow.
   
 First step we have to build a CI/CD pipeline using cloudformation template. For this I have used AWS services such as AWS pipeline, codecommit, codebuild, codedeply. From below diagram we can understand how these each services are integrated each other.
 
-![](images/ReGov Images.png)
+![](images/screen1.png)
 
 
