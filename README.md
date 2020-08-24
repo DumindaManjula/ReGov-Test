@@ -15,27 +15,29 @@ Select the option “Template is Ready” and upload the pipeline-template.yml f
 When you click next in the next page it is asking a name for the stack and go ahead until stack creation page.
 As below screen shot you will be able to see stack creation with each AWS resources defined in to cloudformation template
 
-![](images/screen1.png)
+![](images/screen2.png)
 
 	Once it is success in when you go to template/view in designer you can see the built architecture visually and related dependecies as per below screen shot. 
 
-![](images/screen1.png)	
+![](images/screen2.1.png)	
 
 And if you go to AWS codepipeline service you will see the each steps in CI/CD pipeline which we defines in our cloudformation template as below
 
-![](images/screen1.png)
+![](images/screen3.png)
 	
 	Note : You will see an error message as failed in AWS code commit service since we have not commited any thing to code commit repository.
 
 
 Next go to AWS CodeCommit repository in AWS services. As per below screen shot you will see created repository during our stack creation.
 
- ![](images/screen1.png)
+ ![](images/screen4.png)
 	
 	Note: Inside this repository you will not see any file we have to upload file to this in next step.
 
 There you have to commit this buildspec.yml and template.yml file to repository.
 	Note : for this you can clone the repository and use git command to upload these two files.
+
+	 ![](images/screen5.png)
 
 	This buildspec.yml file contains collection of build commands and related settings, in YAML format, that CodeBuild uses to run a build.
 
@@ -48,9 +50,11 @@ Once you committed these two files in to codecommit our created codepipeline aut
 
 If the deployment is success you will see Succeed in each steps as per below screen shot. Else it will be rolled back and you can see the error caused  in cloudformation events. If there should be some changes to fix this issue you have to update the template and just commit in to repository and it will trigger and start deployment again in the pipeline.
 
+ ![](images/screen6.png)
+
 If the deployment is succeed you will see the new deployment stack created({yourstackname}-deployment) in cloudformation stack. And there template/View in Designer you can see the built architecture in second task.
 
-![](images/screen1.png)
+![](images/screen7.png)
  
 
 
