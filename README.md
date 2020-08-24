@@ -49,7 +49,7 @@ Once you committed these two files in to codecommit our created codepipeline aut
 
 	Note: in each steps since there is manual approval process you have to approve in order to deployment works. Normally in company environment few persons is responsible for this task and that person decide  whether  the deployment is ok or not after checking changes.
 
-If the deployment is success you will see Succeed in each steps as per below screen shot. Else it will be rolled back and you can see the error caused  in cloudformation events. If there should be some changes to fix this issue you have to update the template and just commit in to repository and it will trigger and start deployment again in the pipeline.
+If the deployment is success you will see Succeed in each steps as per below screen shot. Else it will be rolled back and you can see the error caused  in cloudformation events. If there should be some changes to fix this issue you have to update the template and just commit in to repository and it will trigger automatically and start deployment again in the pipeline.
 
  ![](images/screen6.png)
 
